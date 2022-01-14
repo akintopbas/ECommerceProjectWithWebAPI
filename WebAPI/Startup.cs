@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Abstract;
+using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.Context;
 using DataAccess.Concrete.EntityFramework;
@@ -34,7 +36,7 @@ namespace WebAPI
             , options => options.MigrationsAssembly("DataAccess").MigrationsHistoryTable(HistoryRepository.DefaultTableName, "dbo")));
             services.AddControllers();
             services.AddTransient<IUserDal,EfUserDal>();
-            //services.AddTransient<IUserService,UserService>();
+            services.AddTransient<IUserService,UserService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
